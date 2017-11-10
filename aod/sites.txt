@@ -1,0 +1,6 @@
+beijing 0.1
+xianghe 0.2
+taihu 0.1
+hongkong 0.4
+lanzhou 0.3
+taiwan 0.2
