@@ -16,6 +16,8 @@
         crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
         crossorigin="anonymous"></script>
+    <!-- 引入fontawesome -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <!-- 自定义的各种样式,css文件 -->
     <link rel="stylesheet" href="css/default.css">
     <!-- 自定义的各种行为,javascript文件 -->
@@ -23,6 +25,7 @@
     <script type="text/javascript" src="js/siteAOD.js"></script>
     <script type="text/javascript" src="js/yearAOD.js"></script>
     <script type="text/javascript" src="js/creatTable.js"></script>
+    <script type="text/javascript" src="js/creatLongTermMap.js"></script>
     <script type="text/javascript">
         var siteAODs = receiveSiteAOD();
         var yearAODs = receiveYearAOD();
@@ -177,34 +180,49 @@
 
                                 </tbody>
                             </table>
-
                         </div>
-                        <div id="aodLongTerm" class="row">
-                            <button class="btn-group">
-                                <button id="chooseSiteorLati" type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown">选择站点方式</button>
-                                <div class="dropdown-menu">
-                                    <a id="siteName" href="#" class="dropdown-item">选择站点名称</a>
-                                    <a id="siteCoordinate" href="#" class="dropdown-item">输入经纬度坐标</a>
-                                </div>
-                            </button>
-                            <!-- 选择站点名称输入框 -->
-                            <div class="input-group">
-                                <input type="text" class="form-control" aria-lable="Text input with dropdown button">
-                                <div class="input-group-btn">
-                                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span class="oi oi-list"></span>
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <a class="dropdown-item" href="#">Something else here</a>
-                                        <div role="separator" class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Separated link</a>
-                                    </div>
-                                </div>
 
-                            </div>
-                            <img id="longMap" src="imgs/longTerm.png" alt="光学厚度变化趋势">
+                        <div id="aodLongTerm" class="row">
+                            <form>
+                                <label for="chooseSiteWay">选择站点方式：</label>                                
+                                <input type="radio" name="chooseSite" value="name" id="name">名称</input>
+                                <input type="radio" name="chooseSite" value="coordinate" id="coordinate">经纬度</input>
+                                <!-- 选择站点名称输入框 -->
+                            <div id="siteNameInput" class="input-group">
+                                    <input type="text" class="form-control" aria-lable="Text input with dropdown button">
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn btn-secondary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fa fa-bars"></i>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" href="#">北京</a>
+                                            <a class="dropdown-item" href="#">香河</a>
+                                            <a class="dropdown-item" href="#">太湖</a>
+                                            <a class="dropdown-item" href="#">台湾</a>
+                                            <a class="dropdown-item" href="#">香港</a>
+                                        </div>
+                                    </div>
+    
+                                </div>
+                                <!-- 选择站点经纬度输入框 -->
+                                <div id="siteCoorInput">
+                                    <label for="lon">经度：</label>
+                                    <input type="text" name="coordinate" id="lon" />
+                                    <label for="lat">纬度：</label>
+                                    <input type="text" name="coordinate" id="lat">    
+                                </div>
+                                <!-- 选择观测时间段 -->
+                                <div id="choosePeriod">
+                                    <label for="ObservPeriod">观测时间段：</label>
+                                    <input type="text" name="period" id="startTime"/>-
+                                    <input type="text" name="period" id="endTime"/>
+                                </div>
+                            </form>
+                            
+
+                            <canvas id="canvas" width="300" height="200"> 
+                                    Fallback content, in case the browser does not support Canvas. 
+                            </canvas>
                         </div>
                     </div>
 
