@@ -25,7 +25,9 @@
     <script type="text/javascript" src="js/siteAOD.js"></script>
     <script type="text/javascript" src="js/yearAOD.js"></script>
     <script type="text/javascript" src="js/creatTable.js"></script>
-    <script type="text/javascript" src="js/creatLongTermMap.js"></script>
+    <script type="text/javascript" src="js/drawPolyline.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+
     <script type="text/javascript">
         var siteAODs = receiveSiteAOD();
         var yearAODs = receiveYearAOD();
@@ -184,11 +186,11 @@
 
                         <div id="aodLongTerm" class="row">
                             <form>
-                                <label for="chooseSiteWay">选择站点方式：</label>                                
+                                <label for="chooseSiteWay">选择站点方式：</label>
                                 <input type="radio" name="chooseSite" value="name" id="name">名称</input>
                                 <input type="radio" name="chooseSite" value="coordinate" id="coordinate">经纬度</input>
                                 <!-- 选择站点名称输入框 -->
-                            <div id="siteNameInput" class="input-group">
+                                <div id="siteNameInput" class="input-group">
                                     <input type="text" class="form-control" aria-lable="Text input with dropdown button">
                                     <div class="input-group-btn">
                                         <button type="button" class="btn btn-secondary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -202,27 +204,28 @@
                                             <a class="dropdown-item" href="#">香港</a>
                                         </div>
                                     </div>
-    
+
                                 </div>
                                 <!-- 选择站点经纬度输入框 -->
                                 <div id="siteCoorInput">
                                     <label for="lon">经度：</label>
                                     <input type="text" name="coordinate" id="lon" />
                                     <label for="lat">纬度：</label>
-                                    <input type="text" name="coordinate" id="lat">    
+                                    <input type="text" name="coordinate" id="lat">
                                 </div>
                                 <!-- 选择观测时间段 -->
                                 <div id="choosePeriod">
                                     <label for="ObservPeriod">观测时间段：</label>
-                                    <input type="text" name="period" id="startTime"/>-
-                                    <input type="text" name="period" id="endTime"/>
+                                    <input type="text" name="period" id="startTime" />-
+                                    <input type="text" name="period" id="endTime" />
                                 </div>
                             </form>
-                            
 
-                            <canvas id="canvas" width="300" height="200"> 
-                                    Fallback content, in case the browser does not support Canvas. 
+                            <!-- 像素级别的位图绘图技术 -->
+                            <canvas id="line-chart">
+                                Fallback content, in case the browser does not support Canvas.
                             </canvas>
+
                         </div>
                     </div>
 
