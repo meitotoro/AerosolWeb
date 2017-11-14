@@ -25,8 +25,7 @@
     <script type="text/javascript" src="js/siteAOD.js"></script>
     <script type="text/javascript" src="js/yearAOD.js"></script>
     <script type="text/javascript" src="js/creatTable.js"></script>
-    <script type="text/javascript" src="js/drawPolyline.js"></script>
-    <script type="text/javascript" src="js/drawBar.js"></script>    
+    <script type="text/javascript" src="js/drawBarPolyline.js"></script>    
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
 
     <script type="text/javascript">
@@ -188,16 +187,16 @@
                         <div id="aodLongTerm" class="row">
                             <form>
                                 <label for="chooseSiteWay">选择站点方式：</label>
-                                <input type="radio" name="chooseSite" value="name" id="name">名称</input>
-                                <input type="radio" name="chooseSite" value="coordinate" id="coordinate">经纬度</input>
+                                <input type="radio" name="chooseSite" value="name" id="radioName" checked="true">名称</input>
+                                <input type="radio" name="chooseSite" value="coordinate" id="radioCoordinate">经纬度</input>
                                 <!-- 选择站点名称输入框 -->
                                 <div id="siteNameInput" class="input-group">
-                                    <input type="text" class="form-control" aria-lable="Text input with dropdown button">
+                                    <input id="input-site" type="text" class="form-control" aria-lable="Text input with dropdown button">
                                     <div class="input-group-btn">
                                         <button type="button" class="btn btn-secondary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="fa fa-bars"></i>
                                         </button>
-                                        <div class="dropdown-menu dropdown-menu-right">
+                                        <div id="sites-dropdown" class="dropdown-menu dropdown-menu-right">
                                             <a class="dropdown-item" href="#">北京</a>
                                             <a class="dropdown-item" href="#">香河</a>
                                             <a class="dropdown-item" href="#">太湖</a>
@@ -225,6 +224,7 @@
                                     <label for="choosePlotWay">选择画图方式：</label>
                                     <input type="radio" name="plotWay" value="line" id="line">折线图</input>
                                     <input type="radio" name="plotWay" value="bar" id="bar">柱状图</input>
+                                    <button id="bar-btn" type="button" class="btn btn-secondary">确定</button>
                                 </div>
 
                             </form>
