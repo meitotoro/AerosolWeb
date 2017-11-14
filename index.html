@@ -26,6 +26,7 @@
     <script type="text/javascript" src="js/yearAOD.js"></script>
     <script type="text/javascript" src="js/creatTable.js"></script>
     <script type="text/javascript" src="js/drawPolyline.js"></script>
+    <script type="text/javascript" src="js/drawBar.js"></script>    
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
 
     <script type="text/javascript">
@@ -219,10 +220,20 @@
                                     <input type="text" name="period" id="startTime" />-
                                     <input type="text" name="period" id="endTime" />
                                 </div>
+                                <!-- 选择画图的类型，折线图or柱状图 -->
+                                <div>
+                                    <label for="choosePlotWay">选择画图方式：</label>
+                                    <input type="radio" name="plotWay" value="line" id="line">折线图</input>
+                                    <input type="radio" name="plotWay" value="bar" id="bar">柱状图</input>
+                                </div>
+
                             </form>
 
                             <!-- 像素级别的位图绘图技术 -->
                             <canvas id="line-chart">
+                                Fallback content, in case the browser does not support Canvas.
+                            </canvas>
+                            <canvas id="bar-chart">
                                 Fallback content, in case the browser does not support Canvas.
                             </canvas>
 
