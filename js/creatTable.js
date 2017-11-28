@@ -1,5 +1,5 @@
 
-$(function(){
+/* $(function(){
     var sites=siteAODs.site;
     var AODs=siteAODs.AOD;
     if(sites.length==AODs.length){
@@ -9,4 +9,4 @@ $(function(){
             
         }
     }
-})
+}) */

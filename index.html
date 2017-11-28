@@ -10,8 +10,7 @@
         crossorigin="anonymous">
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-git.min.js" type="text/javascript"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
         crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
@@ -25,13 +24,44 @@
     <script type="text/javascript" src="js/siteAOD.js"></script>
     <script type="text/javascript" src="js/yearAOD.js"></script>
     <script type="text/javascript" src="js/creatTable.js"></script>
-    <script type="text/javascript" src="js/drawBarPolyline.js"></script>    
+    <script type="text/javascript" src="js/drawBarPolyline.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
 
     <script type="text/javascript">
-        var siteAODs = receiveSiteAOD();
-        var yearAODs = receiveYearAOD();
-
+        /* var siteAODs = receiveSiteAOD();
+        var yearAODs = receiveYearAOD(); */
+        var sites = [
+            {
+                name: "北京",
+                lon: 116.381,
+                lat: 39.977
+            },
+            {
+                name: "台湾",
+                lon: 120.217,
+                lat: 23.000
+            },
+            {
+                name: "香港",
+                lon: 114.180,
+                lat: 22.303
+            },
+            {
+                name: "兰州",
+                lon: 104.137,
+                lat: 35.946
+            },
+            {
+                name: "太湖",
+                lon: 120.215,
+                lat: 31.421
+            },
+            {
+                name: "香河",
+                lon: 116.962,
+                lat: 39.754
+            }
+        ]
 
     </script>
 
@@ -191,7 +221,7 @@
                                 <input type="radio" name="chooseSite" value="coordinate" id="radioCoordinate">经纬度</input>
                                 <!-- 选择站点名称输入框 -->
                                 <div id="siteNameInput" class="input-group">
-                                    <input id="input-site" type="text" class="form-control" aria-lable="Text input with dropdown button">
+                                    <input id="input-site" type="text" class="form-control" aria-lable="Text input with dropdown button" value="请选择站点名称">
                                     <div class="input-group-btn">
                                         <button type="button" class="btn btn-secondary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="fa fa-bars"></i>
@@ -200,6 +230,7 @@
                                             <a class="dropdown-item" href="#">北京</a>
                                             <a class="dropdown-item" href="#">香河</a>
                                             <a class="dropdown-item" href="#">太湖</a>
+                                            <a class="dropdown-item" href="#">兰州</a>
                                             <a class="dropdown-item" href="#">台湾</a>
                                             <a class="dropdown-item" href="#">香港</a>
                                         </div>
@@ -209,9 +240,9 @@
                                 <!-- 选择站点经纬度输入框 -->
                                 <div id="siteCoorInput">
                                     <label for="lon">经度：</label>
-                                    <input type="text" name="coordinate" id="lon" />
+                                    <input type="text" name="coordinate" id="inputLon" />
                                     <label for="lat">纬度：</label>
-                                    <input type="text" name="coordinate" id="lat">
+                                    <input type="text" name="coordinate" id="inputLat">
                                 </div>
                                 <!-- 选择观测时间段 -->
                                 <div id="choosePeriod">
