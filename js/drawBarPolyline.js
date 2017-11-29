@@ -196,27 +196,27 @@ function drawPolyline(year, month, AOD) {
         alert('Error: Canvas context does not exist!');
         return;
     }
-    var data=new Array();
+    var data = new Array();
     var date = new Array();
     for (var i = 0; i < year.length; i++) {
-        var tempDate = new Date(year[i],month[i],1)
+        var tempDate = new Date(year[i], month[i], 1)
         date.push(tempDate);
-        var tempData=new array();
+        var tempData = new Array();
         tempData.push(tempDate);
         tempData.push(AOD[i]);
         data.push(tempData);
     }
     var xAxis_label = new Array();
-    for(var i = 0; i < year.length; i++){
-        var templabel=year[i].toString();
-        var tempMonth=month[i].toString();
-        templabel=templabel.concat("-",tempMonth);
+    for (var i = 0; i < year.length; i++) {
+        var templabel = year[i].toString();
+        var tempMonth = month[i].toString();
+        templabel = templabel.concat("-", tempMonth);
         xAxis_label.push(templabel);
     }
-    var start=date[0].getTime();
-    var end=date[date.length-1].getTime();
-    var step=(end-start)/5;
-    /* window.myLine = new Chart(canvas, {
+    var start = date[0].getTime();
+    var end = date[date.length - 1].getTime();
+    var step = (end - start) / 5;
+    window.myLine = new Chart(canvas, {
         type: "line",
         data: {
             labels: xAxis_label,
@@ -245,16 +245,18 @@ function drawPolyline(year, month, AOD) {
                 }]
             }
         }
-    }); */
-    Flotr.draw(canvas,data,{
-        Colors: ["#3e95cd","00A8F0"],
-        title:"气溶胶光学厚度年际变化",
-        xAxes:{
-            noTicks:4,
-            mode:"time",
-            timeFomat:"%y/%m"
-        }
+    });
+    /* Flotr.draw(canvas, data
+        , {
+            colors: ["#3e95cd", "00A8F0"],
+            title: "气溶胶光学厚度年际变化",
+            xaxis: {
+                noTicks: 4,
+                mode: 'time',
+                timeFomat: "%y/%m"
+            }
 
-    })
-    
+        }
+    );
+    console.log("过来"); */
 }
