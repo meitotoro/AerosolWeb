@@ -1,8 +1,8 @@
 $(function () {
     var lon = "";
     var lat = "";
-    var starTime="";
-    var endTime="";
+    var starTime = "";
+    var endTime = "";
     // 选择站点方式的radio绑定click事件，
     // 对应下方是显示名称还是经纬度输入
     var radioName = $("#radioName");
@@ -16,15 +16,15 @@ $(function () {
         $("#siteCoorInput").show();
     });
     // 站点名称输入框的button事件，将选择的站点名称显示在input输入框里
-    
+
     var dropdownSite = $("#sites-dropdown>a");
     var inputSite = $("#input-site");
     var siteName = "";
 
     dropdownSite.click(function () {
         siteName = $(this).text();
-        lon=findSiteCoor(siteName)[0];
-        lat=findSiteCoor(siteName)[1];
+        lon = findSiteCoor(siteName)[0];
+        lat = findSiteCoor(siteName)[1];
         inputSite.val(siteName);
 
     })
@@ -32,37 +32,54 @@ $(function () {
     var barBtn = $("#bar-btn");
     var bar = $("#bar")[0];
     var line = $("#line");
-    var inputLon=$("#inputLon");
-    var inputLat=$("#inputLat");
-    
+    var inputLon = $("#inputLon");
+    var inputLat = $("#inputLat");
+
 
 
     barBtn.click(function () {
         //站点经纬度输入框，在确定按钮点击事件中赋值经纬度信息
-        if(radioCoordinate.checked){
-            lon=inputLon.text();
-            lat=inputLat.text();
+        if (radioCoordinate.checked) {
+            lon = inputLon.text();
+            lat = inputLat.text();
         }
-        starTime=$("#startTime").val();
-        endTime=$("#endTime").val();
+        starTime = $("#startTime").val();
+        endTime = $("#endTime").val();
         //发送http请求
-        var path="http://192.168.1.127:9000/aod";
-       var respons="";
-        jQuery.get(path,{
-            lon:lon,
-            lat:lat,
-            start_time:starTime,
-            end_time:endTime
-        },function(data,textStatus){
-            responsLat=data.data;
-        },"json");
-        var year=new Array();
-        var AOD=new Array();
-        for(var i=0;i<responseData.length;i++){
-            var objDate=new Date(responseData[i].year+","+ responseData[i]+"1");
-            year[i]=objDate;
-            AOD[i]=responseData[i].aod;
-        }
+        var path = "http://192.168.1.127:9000/aod";
+        var responseData = "";
+        var year = new Array();
+        var AOD = new Array();
+        jQuery.get(path, {
+            lon: lon,
+            lat: lat,
+            start_time: starTime,
+            end_time: endTime
+        }, function (data, textStatus) {
+            responseData = data.data;
+            var yearData = new Array();
+            var monthData = new Array();
+            var aodData = new Array();
+            for (var i = 0; i < responseData.length; i++) {
+                yearData[i] = responseData[i].year;
+                monthData[i] = responseData[i].month;
+                aodData[i] = responseData[i].aod;
+            }
+            //统计年月aod数据，将月平均aod变成年平均aod
+            var yearAOD = yearAverage(yearData, monthData, aodData);
+            year = yearAOD[0];
+            AOD = yearAOD[1];
+            if (bar.checked) {
+                $("#bar-chart").show();
+                plotBar(year, AOD);
+                $("#line-chart").hide();
+            } else {
+                $("#line-chart").show();
+                drawPolyline(yearData, monthData, aodData);
+                $("#bar-chart").hide();
+            }
+        }, "json");
+
         /* var path="http://192.168.1.127:9000/aod?lon="+lon+"&lat="+lat+"&start_time="+starTime+"&end_time="+endTime;
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
@@ -75,19 +92,42 @@ $(function () {
         };        
         xhttp.open("GET", path, true);
         xhttp.send(); */
-        if (bar.checked) {
-            $("#bar-chart").show();
-            plotBar(year,AOD);
-            $("#line-chart").hide();
-        } else {
-            $("#line-chart").show();
-            drawPolyline(year,AOD);
-            $("#bar-chart").hide();
-        }
+
 
     });
 
 })
+//基于后台返回的年月aod数据，求年平均aod值
+function yearAverage(year, month, aod) {
+    var yearAve = new Array();
+    var aodAve = new Array();
+    var temp_aod = aod[0];
+    var temp_year = year[0];
+    var count = 1;
+    year.push(9999);
+    aod.push(0.0)
+
+    for (var i = 1; i < year.length; i++) {
+        if (year[i] == temp_year) {
+            temp_aod = temp_aod + aod[i];
+            count = count + 1;
+
+        } else {
+            temp_aod = temp_aod / count;
+            yearAve.push(temp_year);
+            aodAve.push(temp_aod);
+            temp_aod = aod[i];
+            temp_year = year[i];
+            count = 1;
+        }
+
+    }
+    var yearAOD = new Array(yearAve, aodAve);
+    //需要删除加上的那两个值
+    year.pop();
+    aod.pop();
+    return yearAOD;
+}
 //根据站点名称，找到对应的经纬度
 function findSiteCoor(siteName) {
     for (var i = 0; i < sites.length; i++) {
@@ -100,7 +140,7 @@ function findSiteCoor(siteName) {
     }
 }
 //画柱状图
-function plotBar(year,AOD) {
+function plotBar(year, AOD) {
     var canvas = $("#bar-chart")[0];
     if (!canvas) {
         alert('Error: Cannot find the canvas element!');
@@ -110,8 +150,8 @@ function plotBar(year,AOD) {
         alert('Error: Canvas context does not exist!');
         return;
     }
-    
-   
+
+
     window.myLine = new Chart(canvas, {
         type: "bar",
         data: {
@@ -146,7 +186,7 @@ function plotBar(year,AOD) {
     });
 }
 
-function drawPolyline(year,AOD) {
+function drawPolyline(year, month, AOD) {
     var canvas = $("#line-chart")[0];
     if (!canvas) {
         alert('Error: Cannot find the canvas element!');
@@ -156,10 +196,30 @@ function drawPolyline(year,AOD) {
         alert('Error: Canvas context does not exist!');
         return;
     }
-    window.myLine = new Chart(canvas, {
+    var data=new Array();
+    var date = new Array();
+    for (var i = 0; i < year.length; i++) {
+        var tempDate = new Date(year[i],month[i],1)
+        date.push(tempDate);
+        var tempData=new array();
+        tempData.push(tempDate);
+        tempData.push(AOD[i]);
+        data.push(tempData);
+    }
+    var xAxis_label = new Array();
+    for(var i = 0; i < year.length; i++){
+        var templabel=year[i].toString();
+        var tempMonth=month[i].toString();
+        templabel=templabel.concat("-",tempMonth);
+        xAxis_label.push(templabel);
+    }
+    var start=date[0].getTime();
+    var end=date[date.length-1].getTime();
+    var step=(end-start)/5;
+    /* window.myLine = new Chart(canvas, {
         type: "line",
         data: {
-            labels: year,
+            labels: xAxis_label,
             datasets: [{
                 data: AOD,
                 label: "China",
@@ -185,5 +245,16 @@ function drawPolyline(year,AOD) {
                 }]
             }
         }
-    });
+    }); */
+    Flotr.draw(canvas,data,{
+        Colors: ["#3e95cd","00A8F0"],
+        title:"气溶胶光学厚度年际变化",
+        xAxes:{
+            noTicks:4,
+            mode:"time",
+            timeFomat:"%y/%m"
+        }
+
+    })
+    
 }
