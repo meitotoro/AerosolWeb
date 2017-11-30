@@ -20,32 +20,28 @@ header div ul li{
 } 
 /* 主体container部分 */
 /* 左边导航条 */
-#left-navbar{
-    padding:0;
+form{
+    width:800px;
 }
-#chooseStatic{
-    width:100%;
+#chooseStaticWay{
+    display: block;
+    width:300px;
+    float:left;
 }
-#chooseStatic .dropdown-menu{
-    margin:0 auto;
+#input-group-year{
+    width:150px;
+    float:left;
 }
-#tablist {
-    overflow: scroll;
-    height: 500px;
-    margin:0;
+#input-group-month{
+    width:150px;
+    float:left;
 }
-#years {
-    width:90%;
-    margin:0 auto;
-
+#input-group-season{
+    width:150px;
+    float:left;
 }
-#years a{
-    text-align: center;
-    border-style:none;
-}
-#seasons {
-    width:90%;
-    margin:0 auto;
+#input-date{
+    
 }
 /* 右边内容区域 */
 

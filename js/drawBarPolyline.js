@@ -46,7 +46,7 @@ $(function () {
         starTime = $("#startTime").val();
         endTime = $("#endTime").val();
         //发送http请求
-        var path = "http://192.168.1.127:9000/aod";
+        
         var responseData = "";
         var year = new Array();
         var AOD = new Array();
@@ -196,16 +196,16 @@ function drawPolyline(year, month, AOD) {
         alert('Error: Canvas context does not exist!');
         return;
     }
-    var data = new Array();
-    var date = new Array();
-    for (var i = 0; i < year.length; i++) {
+    //var data = new Array();
+    //var date = new Array();
+    /* for (var i = 0; i < year.length; i++) {
         var tempDate = new Date(year[i], month[i], 1)
         date.push(tempDate);
         var tempData = new Array();
         tempData.push(tempDate);
         tempData.push(AOD[i]);
         data.push(tempData);
-    }
+    } */
     var xAxis_label = new Array();
     for (var i = 0; i < year.length; i++) {
         var templabel = year[i].toString();
@@ -213,9 +213,6 @@ function drawPolyline(year, month, AOD) {
         templabel = templabel.concat("-", tempMonth);
         xAxis_label.push(templabel);
     }
-    var start = date[0].getTime();
-    var end = date[date.length - 1].getTime();
-    var step = (end - start) / 5;
     window.myLine = new Chart(canvas, {
         type: "line",
         data: {
@@ -236,6 +233,9 @@ function drawPolyline(year, month, AOD) {
                 xAxes: [{
                     gridLines: {
                         display: false
+                    },
+                    ticks:{
+                        maxTicksLimit:5
                     }
                 }],
                 yAxes: [{
@@ -257,6 +257,5 @@ function drawPolyline(year, month, AOD) {
             }
 
         }
-    );
-    console.log("过来"); */
+    ); */
 }
