@@ -20,42 +20,33 @@ header div ul li{
 } 
 /* 主体container部分 */
 /* 左边导航条 */
-form{
-    width:800px;
+form {
+    margin-left:10px;
 }
 #chooseStaticWay{
     display: block;
-    width:300px;
     float:left;
+    margin-top:5px;
 }
 #input-group-year{
     width:150px;
+    margin:0 10px;
     float:left;
 }
 #input-group-month{
     width:150px;
+    margin:0 10px;
     float:left;
 }
 #input-group-season{
     width:150px;
+    margin:0 10px;
     float:left;
 }
-#input-date{
-    
-}
-/* 右边内容区域 */
-
-#aeroMaps {
-    margin-top:5%;
-    
-}
-#aod {
-    width:100%;
-    border:3px white;
-    box-shadow: 0 3px 2px #888888;
-    padding:0;
-    border-style:none;
-    
+#imgAOD {
+    margin-left: 10px;
+   margin-top:10px;
+    width:95%;    
 }
 #aodTable{
     display: block;

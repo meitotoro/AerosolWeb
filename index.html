@@ -69,6 +69,7 @@
             }
         ];
         var path = "http://192.168.1.127:9000/aod";
+        var path_map = "http://192.168.1.127:9000/map";
 
     </script>
 
@@ -103,169 +104,171 @@
 
     <div class="container-fluid">
         <div class="row">
-            <form>
-                <div id="chooseStaticWay">
-                    <label for="chooseStatic">统计方式</label>
-                    <input type="radio" name="chooseStatic" value="month" id="radioMonth" checked="true">月平均</input>
-                    <input type="radio" name="chooseStatic" value="season" id="radioSeason">季节平均</input>
-                    <input type="radio" name="chooseStatic" value="year" id="radioyear">年平均</input>
-                </div>
-                <div id="input-date">
-                    <!-- 月平均统计输入框 -->
-                    <div id="input-group-year" class="input-group">
-                        <input id="input-year" type="text" class="form-control" aria-lable="Text input with dropdown button" value="请选择年份">
-                        <div class="input-group-btn">
-                            <button type="button" class="btn btn-secondary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-bars"></i>
-                            </button>
-                            <div id="years-dropdown" class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="#">2001年</a>
-                                <a class="dropdown-item" href="#">2002年</a>
-                                <a class="dropdown-item" href="#">2003年</a>
-                                <a class="dropdown-item" href="#">2004年</a>
-                                <a class="dropdown-item" href="#">2005年</a>
-                                <a class="dropdown-item" href="#">2006年</a>
-                                <a class="dropdown-item" href="#">2007年</a>
-                                <a class="dropdown-item" href="#">2008年</a>
-                                <a class="dropdown-item" href="#">2009年</a>
-                                <a class="dropdown-item" href="#">2010年</a>
-                                <a class="dropdown-item" href="#">2011年</a>
-                                <a class="dropdown-item" href="#">2012年</a>
-                                <a class="dropdown-item" href="#">2013年</a>
-                                <a class="dropdown-item" href="#">2014年</a>
-                                <a class="dropdown-item" href="#">2015年</a>
-                                <a class="dropdown-item" href="#">2016年</a>
-                                <a class="dropdown-item" href="#">2017年</a>
-                            </div>
-                        </div>
-
+            <div class="col-sm-6">
+                <form>
+                    <div id="chooseStaticWay">
+                        <label for="chooseStatic">统计方式</label>
+                        <input type="radio" name="chooseStatic" value="month" id="radioMonth" checked="true">月平均</input>
+                        <input type="radio" name="chooseStatic" value="season" id="radioSeason">季节平均</input>
+                        <input type="radio" name="chooseStatic" value="year" id="radioyear">年平均</input>
                     </div>
-                    <div id="input-group-month" class="input-group">
-                        <input id="input-month" type="text" class="form-control" aria-lable="Text input with dropdown button" value="请选择月份">
-                        <div class="input-group-btn">
-                            <button type="button" class="btn btn-secondary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-bars"></i>
-                            </button>
-                            <div id="months-dropdown" class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="#">1月</a>
-                                <a class="dropdown-item" href="#">2月</a>
-                                <a class="dropdown-item" href="#">3月</a>
-                                <a class="dropdown-item" href="#">4月</a>
-                                <a class="dropdown-item" href="#">5月</a>
-                                <a class="dropdown-item" href="#">6月</a>
-                                <a class="dropdown-item" href="#">7月</a>
-                                <a class="dropdown-item" href="#">8月</a>
-                                <a class="dropdown-item" href="#">9月</a>
-                                <a class="dropdown-item" href="#">10月</a>
-                                <a class="dropdown-item" href="#">11月</a>
-                                <a class="dropdown-item" href="#">12月</a>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div id="input-group-season" class="input-group">
-                        <input id="input-season" type="text" class="form-control" aria-lable="Text input with dropdown button" value="请选择季节">
-                        <div class="input-group-btn">
-                            <button type="button" class="btn btn-secondary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-bars"></i>
-                            </button>
-                            <div id="season-dropdown" class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="#">春季</a>
-                                <a class="dropdown-item" href="#">夏季</a>
-                                <a class="dropdown-item" href="#">秋季</a>
-                                <a class="dropdown-item" href="#">冬季</a>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-            </form>
-        </div>
-
-        <div id="rightContent" class="row">
-            <div>
-                <div id="aeroMaps" class="col-sm-5">
-                    <img id="aod" src="imgs/2001.png" alt="气溶胶光学厚度图">
-                </div>
-                <div class="col-sm-7">
-                    <div id="aodTable" class="row">
-                        <table class="table table-borderd table-hover">
-                            <thead class="thead-light">
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">监测点</th>
-                                    <th scope="col">光学厚度</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div id="aodLongTerm" class="row">
-                        <form>
-                            <label for="chooseSiteWay">选择站点方式：</label>
-                            <input type="radio" name="chooseSite" value="name" id="radioName" checked="true">名称</input>
-                            <input type="radio" name="chooseSite" value="coordinate" id="radioCoordinate">经纬度</input>
-                            <!-- 选择站点名称输入框 -->
-                            <div id="siteNameInput" class="input-group">
-                                <input id="input-site" type="text" class="form-control" aria-lable="Text input with dropdown button" value="请选择站点名称">
-                                <div class="input-group-btn">
-                                    <button type="button" class="btn btn-secondary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fa fa-bars"></i>
-                                    </button>
-                                    <div id="sites-dropdown" class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" href="#">北京</a>
-                                        <a class="dropdown-item" href="#">香河</a>
-                                        <a class="dropdown-item" href="#">太湖</a>
-                                        <a class="dropdown-item" href="#">兰州</a>
-                                        <a class="dropdown-item" href="#">台湾</a>
-                                        <a class="dropdown-item" href="#">香港</a>
-                                    </div>
+                    <div id="input-date">
+                        <!-- 月平均统计输入框 -->
+                        <div id="input-group-year" class="input-group">
+                            <input id="input-year" type="text" class="form-control" aria-lable="Text input with dropdown button" value="请选择年份">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-secondary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-bars"></i>
+                                </button>
+                                <div id="years-dropdown" class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="#">2001年</a>
+                                    <a class="dropdown-item" href="#">2002年</a>
+                                    <a class="dropdown-item" href="#">2003年</a>
+                                    <a class="dropdown-item" href="#">2004年</a>
+                                    <a class="dropdown-item" href="#">2005年</a>
+                                    <a class="dropdown-item" href="#">2006年</a>
+                                    <a class="dropdown-item" href="#">2007年</a>
+                                    <a class="dropdown-item" href="#">2008年</a>
+                                    <a class="dropdown-item" href="#">2009年</a>
+                                    <a class="dropdown-item" href="#">2010年</a>
+                                    <a class="dropdown-item" href="#">2011年</a>
+                                    <a class="dropdown-item" href="#">2012年</a>
+                                    <a class="dropdown-item" href="#">2013年</a>
+                                    <a class="dropdown-item" href="#">2014年</a>
+                                    <a class="dropdown-item" href="#">2015年</a>
+                                    <a class="dropdown-item" href="#">2016年</a>
+                                    <a class="dropdown-item" href="#">2017年</a>
                                 </div>
-
-                            </div>
-                            <!-- 选择站点经纬度输入框 -->
-                            <div id="siteCoorInput">
-                                <label for="lon">经度：</label>
-                                <input type="text" name="coordinate" id="inputLon" />
-                                <label for="lat">纬度：</label>
-                                <input type="text" name="coordinate" id="inputLat">
-                            </div>
-                            <!-- 选择观测时间段 -->
-                            <div id="choosePeriod">
-                                <label for="ObservPeriod">观测时间段：</label>
-                                <input type="text" name="period" id="startTime" />-
-                                <input type="text" name="period" id="endTime" />
-                            </div>
-                            <!-- 选择画图的类型，折线图or柱状图 -->
-                            <div>
-                                <label for="choosePlotWay">选择画图方式：</label>
-                                <input type="radio" name="plotWay" value="line" id="line">折线图</input>
-                                <input type="radio" name="plotWay" value="bar" id="bar">柱状图</input>
-                                <button id="bar-btn" type="button" class="btn btn-secondary">确定</button>
                             </div>
 
-                        </form>
+                        </div>
+                        <div id="input-group-month" class="input-group">
+                            <input id="input-month" type="text" class="form-control" aria-lable="Text input with dropdown button" value="请选择月份">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-secondary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-bars"></i>
+                                </button>
+                                <div id="months-dropdown" class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="#">1月</a>
+                                    <a class="dropdown-item" href="#">2月</a>
+                                    <a class="dropdown-item" href="#">3月</a>
+                                    <a class="dropdown-item" href="#">4月</a>
+                                    <a class="dropdown-item" href="#">5月</a>
+                                    <a class="dropdown-item" href="#">6月</a>
+                                    <a class="dropdown-item" href="#">7月</a>
+                                    <a class="dropdown-item" href="#">8月</a>
+                                    <a class="dropdown-item" href="#">9月</a>
+                                    <a class="dropdown-item" href="#">10月</a>
+                                    <a class="dropdown-item" href="#">11月</a>
+                                    <a class="dropdown-item" href="#">12月</a>
+                                </div>
+                            </div>
 
-                        <!-- 像素级别的位图绘图技术 -->
-                        <canvas id="line-chart">
-                            Fallback content, in case the browser does not support Canvas.
-                        </canvas>
-                        <canvas id="bar-chart">
-                            Fallback content, in case the browser does not support Canvas.
-                        </canvas>
+                        </div>
+                        <div id="input-group-season" class="input-group">
+                            <input id="input-season" type="text" class="form-control" aria-lable="Text input with dropdown button" value="请选择季节">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-secondary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-bars"></i>
+                                </button>
+                                <div id="season-dropdown" class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="#">春季</a>
+                                    <a class="dropdown-item" href="#">夏季</a>
+                                    <a class="dropdown-item" href="#">秋季</a>
+                                    <a class="dropdown-item" href="#">冬季</a>
+                                </div>
+                            </div>
+
+                        </div>
 
                     </div>
+                </form>
+                <div id="aeroMaps">
+                    <img id="imgAOD" src="imgs/2001.png" alt="气溶胶光学厚度图">
                 </div>
-
             </div>
 
+            <div class="col-sm-6">
+
+                <div id="aodTable" class="row">
+                    <table class="table table-borderd table-hover">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">监测点</th>
+                                <th scope="col">光学厚度</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
 
 
 
+
+
+
+
+
+
+
+            </div>
+        </div>
+        <div id="aodLongTerm" class="row">
+            <form>
+                <label for="chooseSiteWay">选择站点方式：</label>
+                <input type="radio" name="chooseSite" value="name" id="radioName" checked="true">名称</input>
+                <input type="radio" name="chooseSite" value="coordinate" id="radioCoordinate">经纬度</input>
+                <!-- 选择站点名称输入框 -->
+                <div id="siteNameInput" class="input-group">
+                    <input id="input-site" type="text" class="form-control" aria-lable="Text input with dropdown button" value="请选择站点名称">
+                    <div class="input-group-btn">
+                        <button type="button" class="btn btn-secondary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <div id="sites-dropdown" class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="#">北京</a>
+                            <a class="dropdown-item" href="#">香河</a>
+                            <a class="dropdown-item" href="#">太湖</a>
+                            <a class="dropdown-item" href="#">兰州</a>
+                            <a class="dropdown-item" href="#">台湾</a>
+                            <a class="dropdown-item" href="#">香港</a>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- 选择站点经纬度输入框 -->
+                <div id="siteCoorInput">
+                    <label for="lon">经度：</label>
+                    <input type="text" name="coordinate" id="inputLon" />
+                    <label for="lat">纬度：</label>
+                    <input type="text" name="coordinate" id="inputLat">
+                </div>
+                <!-- 选择观测时间段 -->
+                <div id="choosePeriod">
+                    <label for="ObservPeriod">观测时间段：</label>
+                    <input type="text" name="period" id="startTime" />-
+                    <input type="text" name="period" id="endTime" />
+                </div>
+                <!-- 选择画图的类型，折线图or柱状图 -->
+                <div>
+                    <label for="choosePlotWay">选择画图方式：</label>
+                    <input type="radio" name="plotWay" value="line" id="line">折线图</input>
+                    <input type="radio" name="plotWay" value="bar" id="bar">柱状图</input>
+                    <button id="bar-btn" type="button" class="btn btn-secondary">确定</button>
+                </div>
+
+            </form>
+
+            <!-- 像素级别的位图绘图技术 -->
+            <canvas id="line-chart">
+                Fallback content, in case the browser does not support Canvas.
+            </canvas>
+            <canvas id="bar-chart">
+                Fallback content, in case the browser does not support Canvas.
+            </canvas>
 
         </div>
     </div>
