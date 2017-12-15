@@ -14,8 +14,10 @@ $(function () {
                     year:year,
                     month:month
                 },function(data,textStatus){
+                    var sites_aod=data.sites_aod;
+                    var filename=data.filename;
+                    var img_html='<img id="imgAOD" src="http://192.168.1.127:9000/map/'+filename+'" alt="aod_image">';
                     
-                    var img_html='<img id="imgAOD" src="http://192.168.1.127:9000/map?year='+year.toString()+'&month='+month.toString()+'" alt="aod_image">'
                     $("#aeroMaps img").remove();
                     $("#aeroMaps").append(img_html);
                 })
