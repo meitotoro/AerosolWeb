@@ -5,20 +5,54 @@ body{
 /* Customize container */
 @media (min-width: 48em) {
     .container {
-      max-width: 56rem;
-      padding:0px;
-    }
-    .container .row{
-        width:100%;
-        margin: 0px;
+      
     }
 }
 /* header部分 */
+.header {
+    background-color: #312f2f;
+}
 header{
     margin-bottom: 10px;
-    text-align: center;
     padding:7px;
+    height: 100px;
+    
 }
+header h2{
+    margin-left:5%;
+}
+.headerChoose {
+    margin-left:5%;
+}
+.headerChoose .dropdown{
+    float:left;
+    margin-right: 30px;
+    /* background-color: white; */
+}
+.divider hr{
+    color: black;
+    margin: 0 29px 0 0;
+    border-right: 1px solid white;
+    height: 100%;
+}
+.dropdown button{
+    border-color:black;
+    border-radius:20px;
+    width:120px;
+    text-align:left;    
+    vertical-align:middle;
+}
+.dropdown-toggle::after{
+    /*  float:right;*/
+    display: none;
+}
+.fontCaret{
+    float:right;
+    font-size: 1.5rem;
+    line-height: 10px;
+    margin: 0;    
+}
+
 /* 主体container部分 */
 /* 左边导航条 */
 
