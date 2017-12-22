@@ -13,21 +13,20 @@ body{
     background-color: #312f2f;
 }
 header{
-    margin-bottom: 10px;
-    padding:7px;
-    height: 100px;
-    
+    margin-bottom: 0.8rem;
+    padding:1rem;    
 }
 header h2{
     margin-left:5%;
+    margin-top:2%;
 }
 .headerChoose {
     margin-left:5%;
+    margin-top:2rem;
 }
 .headerChoose .dropdown{
     float:left;
     margin-right: 30px;
-    /* background-color: white; */
 }
 .divider hr{
     color: black;
@@ -35,22 +34,35 @@ header h2{
     border-right: 1px solid white;
     height: 100%;
 }
-.dropdown button{
-    border-color:black;
-    border-radius:20px;
-    width:120px;
-    text-align:left;    
-    vertical-align:middle;
+.input-group{
+    border-color:red;
+    border-radius:1rem; 
+    padding:0 0 0 0.5rem;
+    width:10rem;
+    height: 2rem;
+    margin: 0px;
+    background-color: white;
+    float:left;
+    margin-right:2rem;
+}
+.input-group input{
+    border:0rem;
 }
 .dropdown-toggle::after{
     /*  float:right;*/
     display: none;
 }
-.fontCaret{
-    float:right;
+.input-group-btn{
     font-size: 1.5rem;
-    line-height: 10px;
-    margin: 0;    
+    line-height: 8px;
+    margin: 0;
+}
+.input-group-btn button{
+    border-radius:1rem;
+    padding-top:2px;
+}
+.input-group-btn button span {
+    font-size:1.6rem;
 }
 
 /* 主体container部分 */

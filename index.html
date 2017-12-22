@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
     <!-- Latest compiled and minified CSS -->
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
         crossorigin="anonymous">
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-git.min.js" type="text/javascript"></script>
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
         crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
@@ -78,116 +79,128 @@
 </head>
 
 <body>
-    <div class="header">
+    <div class="header container-fluid">
         <header>
             <h2 class="text-light">中国区域气溶胶光学厚度分布</h2>
             <div class="headerChoose d-flex">
-                <div class="dropdown">
-                    <button type="button" class="btn btn-light btn-sm dropdown-toggle" id="chooseSate" data-toggle="dropdown">
-                        选择卫星
-                        <p class="fontCaret"><i class="fa fa-caret-down"></i></p>
-                    </button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">MODIS</a>
-                        <a class="dropdown-item" href="#">AVHRR</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">FY3-A</a>
-                        <a class="dropdown-item" href="#">FY3-B</a>
+                <div class="input-group satellite">
+                    <input type="text" id="chooseSate" class="form-control" aria-label="Text input with dropdown button" value="选择卫星">
+                    <div class="input-group-btn">
+                        <button type="button" class="btn btn-light btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="fa fa-caret-down"></span>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">MODIS</a>
+                            <a class="dropdown-item" href="#">AVHRR</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">FY3-A</a>
+                            <a class="dropdown-item" href="#">FY3-B</a>
+                        </div>
                     </div>
                 </div>
-                <div class="dropdown">
-                    <button type="button" class="btn btn-light btn-sm dropdown-toggle" id="chooseArea" data-toggle="dropdown">
-                        选择区域
-                        <p class="fontCaret"><i class="fa fa-caret-down"></i></p>
-                    </button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">全国</a>
-                        <a class="dropdown-item" href="#">京津冀</a>
-                        <a class="dropdown-item" href="#">珠三角</a>
-                        <a class="dropdown-item" href="#">长三角</a>
+                <div class="input-group area">
+                    <input type="text" id="chooseArea" class="form-control" aria-label="Text input with dropdown button" value="选择区域">
+                    <div class="input-group-btn">
+                        <button type="button" class="btn btn-light btn-sm dropdown-toggle" data-toggle="dropdown">
+                            <span class="fa fa-caret-down"></span>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">全国</a>
+                            <a class="dropdown-item" href="#">京津冀</a>
+                            <a class="dropdown-item" href="#">珠三角</a>
+                            <a class="dropdown-item" href="#">长三角</a>
+                        </div>
+
                     </div>
+
                 </div>
                 <div class="divider">
-                        <hr size="3" width="1">
+                    <hr size="3" width="1">
                 </div>
-                    
-
-                <div class="dropdown">
-                    <button type="button" class="btn btn-light btn-sm dropdown-toggle" id="chooseStatis" data-toggle="dropdown">
-                        选择统计方式
-                        <p class="fontCaret"><i class="fa fa-caret-down"></i></p>
-                    </button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">月平均</a>
-                        <a class="dropdown-item" href="#">季节平均</a>
-                        <a class="dropdown-item" href="#">年平均</a>
+                <div class="input-group statis">
+                    <input type="text" id="chooseStatis" class="form-control" aria-label="Text input with dropdown button" value="选择统计方式">
+                    <div class="input-group-btn">
+                        <button type="button" class="btn btn-light btn-sm dropdown-toggle" data-toggle="dropdown">
+                            <span class="fa fa-caret-down"></span>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">月平均</a>
+                            <a class="dropdown-item" href="#">季节平均</a>
+                            <a class="dropdown-item" href="#">年平均</a>
+                        </div>
                     </div>
                 </div>
                 <div id="input-date">
-                    <!-- 月平均统计输入框 -->
-                    <div class="dropdown">
-                        <button type="button" class="btn btn-light btn-sm dropdown-toggle" data-toggle="dropdown" id="input-year" aria-haspopup="true"
-                            aria-expanded="false">
-                            请选择年份
-                            <p class="fontCaret"><i class="fa fa-caret-down"></i></p>
-                        </button>
-                        <div id="years-dropdown" class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="#">2001年</a>
-                            <a class="dropdown-item" href="#">2002年</a>
-                            <a class="dropdown-item" href="#">2003年</a>
-                            <a class="dropdown-item" href="#">2004年</a>
-                            <a class="dropdown-item" href="#">2005年</a>
-                            <a class="dropdown-item" href="#">2006年</a>
-                            <a class="dropdown-item" href="#">2007年</a>
-                            <a class="dropdown-item" href="#">2008年</a>
-                            <a class="dropdown-item" href="#">2009年</a>
-                            <a class="dropdown-item" href="#">2010年</a>
-                            <a class="dropdown-item" href="#">2011年</a>
-                            <a class="dropdown-item" href="#">2012年</a>
-                            <a class="dropdown-item" href="#">2013年</a>
-                            <a class="dropdown-item" href="#">2014年</a>
-                            <a class="dropdown-item" href="#">2015年</a>
-                            <a class="dropdown-item" href="#">2016年</a>
-                            <a class="dropdown-item" href="#">2017年</a>
+                    <div class="input-group year">
+                        <input type="text" id="input-year" class="form-control" aria-label="Text input with dropdown button" value="选择年份">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-light btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="fa fa-caret-down"></span>
+                            </button>
+                            <div id="years-dropdown" class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item" href="#">2001年</a>
+                                <a class="dropdown-item" href="#">2002年</a>
+                                <a class="dropdown-item" href="#">2003年</a>
+                                <a class="dropdown-item" href="#">2004年</a>
+                                <a class="dropdown-item" href="#">2005年</a>
+                                <a class="dropdown-item" href="#">2006年</a>
+                                <a class="dropdown-item" href="#">2007年</a>
+                                <a class="dropdown-item" href="#">2008年</a>
+                                <a class="dropdown-item" href="#">2009年</a>
+                                <a class="dropdown-item" href="#">2010年</a>
+                                <a class="dropdown-item" href="#">2011年</a>
+                                <a class="dropdown-item" href="#">2012年</a>
+                                <a class="dropdown-item" href="#">2013年</a>
+                                <a class="dropdown-item" href="#">2014年</a>
+                                <a class="dropdown-item" href="#">2015年</a>
+                                <a class="dropdown-item" href="#">2016年</a>
+                                <a class="dropdown-item" href="#">2017年</a>
+                            </div>
                         </div>
                     </div>
-                    <div class="dropdown">
-                        <button type="button" class="btn btn-light btn-sm dropdown-toggle" data-toggle="dropdown" id="input-month" aria-haspopup="true"
-                            aria-expanded="false">
-                            请选择月份
-                            <p class="fontCaret"><i class="fa fa-caret-down"></i></p>
-                        </button>
-                        <div id="months-dropdown" class="dropdown-menu">
-                            <a class="dropdown-item" href="#">1月</a>
-                            <a class="dropdown-item" href="#">2月</a>
-                            <a class="dropdown-item" href="#">3月</a>
-                            <a class="dropdown-item" href="#">4月</a>
-                            <a class="dropdown-item" href="#">5月</a>
-                            <a class="dropdown-item" href="#">6月</a>
-                            <a class="dropdown-item" href="#">7月</a>
-                            <a class="dropdown-item" href="#">8月</a>
-                            <a class="dropdown-item" href="#">9月</a>
-                            <a class="dropdown-item" href="#">10月</a>
-                            <a class="dropdown-item" href="#">11月</a>
-                            <a class="dropdown-item" href="#">12月</a>
+                    <div class="input-group month">
+                        <input type="text" id="input-month" class="form-control" aria-label="Text input with dropdown button" value="选择月份">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-light btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="fa fa-caret-down"></span>
+                            </button>
+                            <div id="months-dropdown" class="dropdown-menu">
+                                <a class="dropdown-item" href="#">1月</a>
+                                <a class="dropdown-item" href="#">2月</a>
+                                <a class="dropdown-item" href="#">3月</a>
+                                <a class="dropdown-item" href="#">4月</a>
+                                <a class="dropdown-item" href="#">5月</a>
+                                <a class="dropdown-item" href="#">6月</a>
+                                <a class="dropdown-item" href="#">7月</a>
+                                <a class="dropdown-item" href="#">8月</a>
+                                <a class="dropdown-item" href="#">9月</a>
+                                <a class="dropdown-item" href="#">10月</a>
+                                <a class="dropdown-item" href="#">11月</a>
+                                <a class="dropdown-item" href="#">12月</a>
+                            </div>
                         </div>
                     </div>
-                    <div class="dropdown">
-                        <button type="button" class="btn btn-light btn-sm dropdown-toggle" id="input-season" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">
-                            请选择季节
-                            <p class="fontCaret"><i class="fa fa-caret-down"></i></p>
-                        </button>
-                        <div id="season-dropdown" class="dropdown-menu">
-                            <a class="dropdown-item" href="#">春季</a>
-                            <a class="dropdown-item" href="#">夏季</a>
-                            <a class="dropdown-item" href="#">秋季</a>
-                            <a class="dropdown-item" href="#">冬季</a>
+                    <div class="input-group season">
+                        <input type="text" id="input-season" class="form-control" aria-label="Text input with dropdown button" value="选择月份">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-light btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="fa fa-caret-down"></span>
+                            </button>
+                            <div id="season-dropdown" class="dropdown-menu">
+                                <a class="dropdown-item" href="#">春季</a>
+                                <a class="dropdown-item" href="#">夏季</a>
+                                <a class="dropdown-item" href="#">秋季</a>
+                                <a class="dropdown-item" href="#">冬季</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-    
+
+
+    </div>
+
+
     </header>
     </div>
 

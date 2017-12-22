@@ -1,8 +1,13 @@
 $(function(){
-    $("#input-group-year").show();        
+    /* $("#input-group-year").show();        
     $("#input-group-month").show();
-    $("#input-group-season").hide(); 
-    $("#radioMonth").click(function(){
+    $("#input-group-season").hide();  */
+    $(".satellite .dropdown-menu a").click(function(){
+        var value=$(this).text();
+        $("#chooseSate").val(value);
+
+    });
+    /* $("#radioMonth").click(function(){
         $("#input-group-year").show();
         $("#input-year").val("请选择年份");        
         $("#input-group-month").show();
@@ -32,5 +37,5 @@ $(function(){
         $("#input-year").val("请选择年份"); 
         $("#input-group-month").hide();
         $("#input-group-season").hide(); 
-    })
+    }) */
 })
