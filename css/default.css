@@ -70,7 +70,9 @@ header h2{
 
 /* 主体container部分 */
 /* 左边导航条 */
-
+.container{
+    
+}
 #collapse1,#collapse2,#collapse3,#collapse4{
     font-size: 15px;
     padding-top:0px;
