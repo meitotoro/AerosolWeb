@@ -2,6 +2,8 @@ $(function () {
     var year_list = $("#years-dropdown a");
     var month_list = $("#months-dropdown a");
     var input_month = $("input-month").val();
+    var wait=$(".wait");
+    wait.hide();
     month_list.click(function () {
         var input_month = $("#input-month").val();
         if (input_month != "请选择月份") {
@@ -11,6 +13,7 @@ $(function () {
             var month = parseInt(input_month.slice(0, -1));
             if (typeof (year) == "number") {
                 function reqListener() {
+                    wait.hide();
                     var data=this.responseText;
                     data=jQuery.parseJSON(data);
                     var sites_aod = data.aod;
@@ -19,6 +22,7 @@ $(function () {
                     //画图
                     $("#aeroMaps img").remove();
                     $("#aeroMaps").append(img_html);
+                    $("#aeroMaps").show();
                     //填充表格
                     var sites = sites_aod.sites;
                     var aod = new Array();
@@ -39,6 +43,9 @@ $(function () {
                 var url = path_map + "?year=" + year + "&month=" + month;
                 oReq.open("GET", url);
                 oReq.send();
+                wait.show();
+                $("#aodTable table tbody").html("");
+                $("#aeroMaps").hide();
             }
 
            /*   if (typeof (year) == "number") {
