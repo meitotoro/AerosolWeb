@@ -208,7 +208,7 @@
 
 
     <!-- <div class="container"> -->
-    <div class="row">
+    <div class="AODMaps row">
         <div class="wait col-5">
             <div class="dot"></div>
             <div class="dot"></div>
@@ -216,11 +216,20 @@
             <div class="dot"></div>
             <div class="dot"></div>
         </div>
-        <div id="aeroMaps" class="col-5">
+        <div id="chinaMaps">
             <img id="imgAOD" src="imgs/2001.png" alt="气溶胶光学厚度图">
         </div>
+        <div id="jingjinjiMap">
+            <img id="jingjinjiAOD" src="imgs/2001.png" alt="气溶胶光学厚度图">
+        </div>
+        <div id="changsanjiaoMap">
+            <img id="changsanjiaoAOD" src="imgs/2001.png" alt="气溶胶光学厚度图">
+        </div>
+        <div id="zhusanjiaoMap">
+            <img id="zhusanjiaoAOD" src="imgs/2001.png" alt="气溶胶光学厚度图">
+        </div>
 
-        <div id="aodTable" class="col-3">
+        <div id="aodTable" class="col-4">
             <table class="table table-borderd table-hover">
                 <thead class="thead-light">
                     <tr>
@@ -235,61 +244,79 @@
             </table>
         </div>
     </div>
-    <div class="row justify-content-center">
-        <div class="col-12 ">
+    <div class="row">
+        <div id="polyLineForm" class="col-5 ">
             <form>
-                <label for="chooseSiteWay">选择站点方式：</label>
-                <input type="radio" name="chooseSite" value="name" id="radioName" checked="true">名称</input>
-                <input type="radio" name="chooseSite" value="coordinate" id="radioCoordinate">经纬度</input>
+                <div class="row">
+                    <label>选择站点方式：</label>
+                    <input type="radio" name="chooseSite" value="name" id="radioName" checked="true">名称</input>
+                    <input type="radio" name="chooseSite" value="coordinate" id="radioCoordinate">经纬度</input>
+                </div>
                 <!-- 选择站点名称输入框 -->
-                <div id="siteNameInput" class="input-group">
-                    <input id="input-site" type="text" class="form-control" aria-lable="Text input with dropdown button" value="请选择站点名称">
-                    <div class="input-group-btn">
-                        <button type="button" class="btn btn-secondary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-bars"></i>
-                        </button>
-                        <div id="sites-dropdown" class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="#">北京</a>
-                            <a class="dropdown-item" href="#">香河</a>
-                            <a class="dropdown-item" href="#">太湖</a>
-                            <a class="dropdown-item" href="#">兰州</a>
-                            <a class="dropdown-item" href="#">台湾</a>
-                            <a class="dropdown-item" href="#">香港</a>
+                <div class="row">
+                    <div id="siteNameInput" class="input-group">
+                        <input id="input-site" type="text" class="form-control" aria-lable="Text input with dropdown button" value="请选择站点名称">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-secondary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <div id="sites-dropdown" class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item" href="#">北京</a>
+                                <a class="dropdown-item" href="#">香河</a>
+                                <a class="dropdown-item" href="#">太湖</a>
+                                <a class="dropdown-item" href="#">兰州</a>
+                                <a class="dropdown-item" href="#">台湾</a>
+                                <a class="dropdown-item" href="#">香港</a>
+                            </div>
                         </div>
                     </div>
-
                 </div>
                 <!-- 选择站点经纬度输入框 -->
-                <div id="siteCoorInput">
-                    <label for="lon">经度：</label>
-                    <input type="text" name="coordinate" id="inputLon" />
-                    <label for="lat">纬度：</label>
-                    <input type="text" name="coordinate" id="inputLat">
+                <div class="row" id="siteCoorInput">
+                    <div class="form-group col-4">
+                        <label for="inputLon">经度：</label>
+                        <input type="text" name="coordinate" id="inputLon" />
+                    </div>
+                    <div class="form-group col-4">
+                        <label for="inputLat">纬度：</label>
+                        <input type="text" name="coordinate" id="inputLat">
+
+                    </div>
+
+
+
                 </div>
                 <!-- 选择观测时间段 -->
-                <div id="choosePeriod">
+                <div class="row" id="choosePeriod">
                     <label for="ObservPeriod">观测时间段：</label>
                     <input type="text" name="period" id="startTime" />-
                     <input type="text" name="period" id="endTime" />
                 </div>
                 <!-- 选择画图的类型，折线图or柱状图 -->
-                <div>
-                    <label for="choosePlotWay">选择画图方式：</label>
-                    <input type="radio" name="plotWay" value="line" id="line">折线图</input>
+                <div class="row form-group">
+                    <p>选择画图方式：</p>
+                    <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="plotWay" value="line" id="line">折线图</input>
                     <input type="radio" name="plotWay" value="bar" id="bar">柱状图</input>
+                    </label>
+                </div>
+                <div class="row">
                     <button id="bar-btn" type="button" class="btn btn-secondary">确定</button>
                 </div>
-
             </form>
+        </div>
+        <!-- 像素级别的位图绘图技术 -->
+        <div class="col-7">
 
-            <!-- 像素级别的位图绘图技术 -->
             <canvas id="line-chart">
                 Fallback content, in case the browser does not support Canvas.
             </canvas>
             <canvas id="bar-chart">
                 Fallback content, in case the browser does not support Canvas.
             </canvas>
+
         </div>
+
     </div>
     <!-- </div> -->
 

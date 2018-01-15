@@ -14,15 +14,26 @@ $(function () {
             if (typeof (year) == "number") {
                 function reqListener() {
                     wait.hide();
-                    var data=this.responseText;
+                    var data=this.responseText;                    
                     data=jQuery.parseJSON(data);
                     var sites_aod = data.aod;
+                    if(sites_aod==""){
+                        var alertStr="数据库中没有"+year+"年"+input_month+"的数据!";
+                        alert(alertStr);
+                        return;
+                    }
                     var filename = data.filename;
-                    var img_html = '<img id="imgAOD" src="' + path_map +"/"+ filename + '" alt="aod_image">';
+                    var china_img_html = '<img id="imgAOD" src="' + path_map +"/"+ filename[0] + '" alt="aod_image">';
+                    var jingjinji_img_html='<img id="jingjinjiAOD" src="' + path_map +"/"+ filename[1] + '" alt="aod_image">';
+                    var changsanjiao_img_html='<img id="changsanjiaoAOD" src="' + path_map +"/"+ filename[2] + '" alt="aod_image">';
+                    var zhusanjiao_img_html='<img id="zhusanjiaoAOD" src="' + path_map +"/"+ filename[3] + '" alt="aod_image">';
                     //画图
-                    $("#aeroMaps img").remove();
-                    $("#aeroMaps").append(img_html);
-                    $("#aeroMaps").show();
+                    $(".AODMaps div img").remove();
+                    $("#chinaMaps").append(china_img_html);
+                    $("#jingjinjiMap").append(jingjinji_img_html);
+                    $("#changsanjiaoMap").append(changsanjiao_img_html);
+                    $("#zhusanjiaoMap").append(zhusanjiao_img_html);
+                    $(".AODMaps div img").show();
                     //填充表格
                     var sites = sites_aod.sites;
                     var aod = new Array();
@@ -45,7 +56,7 @@ $(function () {
                 oReq.send();
                 wait.show();
                 $("#aodTable table tbody").html("");
-                $("#aeroMaps").hide();
+                $(".AODMaps div img").hide();
             }
 
            /*   if (typeof (year) == "number") {

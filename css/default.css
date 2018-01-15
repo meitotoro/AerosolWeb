@@ -69,67 +69,48 @@ header h2{
 }
 
 /* 主体container部分 */
-/* 左边导航条 */
-.container{
-    
+/* 全国和重点区域aod图，表格 */
+.AODMaps{
+    margin-left:4rem;
 }
-#collapse1,#collapse2,#collapse3,#collapse4{
-    font-size: 15px;
-    padding-top:0px;
-}
-.col-sm-9 .row{
-    display: flex;
-    justify-content: space-around;
-}
-.row .col-sm-3{
-    display: flex;
-    justify-content: center;
-}
-form {
-    display: flex;
-}
-#chooseStaticWay{
-    display: block;
-    float:left;
-    margin-top:5px;
-}
-#input-group-year{
-    width:150px;
-    margin:0 0 0 10px;
-    float:left;
-}
-#input-group-month{
-    width:150px;
-    margin:0 0 0 10px;
-    float:left;
-}
-#input-group-season{
-    width:150px;
-    margin:0 0 0 10px;
-    float:left;
-}
-#imgAOD {
-    margin-left: 10px;
-   margin-top:10px;
-   width:100%;
-   height: 32rem;   
-}
+
 #aodTable{
     display: block;
-    width:100%;
-    height: 50%;
-    text-align: cemter;
+    margin-top:2rem;
+    text-align: center;
 }
-#aodLongTerm{
-    width:100%;
-    height: 50%;
+
+/* 折线图、柱状图 */
+#polyLineForm{
+    padding:0 0 0 4rem;
 }
-#longMap{
-    width:100%;
+#polyLineForm form .row{
+    margin-left:0;
+    margin-bottom: 0.5rem;
+    
 }
-/* 画图区域 */
-#siteCoorInput{
-    display: none;
+/*站点名称输入框*/
+#siteNameInput{
+    width:60%;
+    padding: 0;
+}
+
+#input-site{
+    padding-left:2rem;
+   
+}
+/*站点经纬度输入框*/
+#siteCoorInput .form-group{
+    padding-left:0;
+    padding-right: 0;
+    margin-bottom: 0;
+}
+#siteCoorInput .form-group input{
+    width:50%;
+   
+}
+#choosePeriod input{
+    width:17%;
 }
 /* #line-chart{
     width:500px;
