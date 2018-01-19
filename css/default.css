@@ -1,6 +1,7 @@
 /* reset */
 body{
     font-family: "verdana", "微软雅黑";
+    color:#4d4d4d;
 }
 /* Customize container */
 @media (min-width: 48em) {
@@ -18,11 +19,13 @@ header{
 }
 header h2{
     margin-left:5%;
-    margin-top:2%;
+    margin-top:0.5%;
+    font-size:1.8rem;
 }
 .headerChoose {
     margin-left:5%;
-    margin-top:2rem;
+    margin-top:1rem;
+    
 }
 .headerChoose .dropdown{
     float:left;
@@ -40,14 +43,19 @@ header h2{
     border-radius:0.8rem; 
     padding:0 0 0 0.5rem;
     width:10rem;
-    height: 2rem;
+    height: 1.8rem;
     margin: 0px;
     background-color: white;
     float:left;
     margin-right:2rem;
+    
 }
 .input-group input{
     border:0rem;
+    color:#4d4d4d;
+}
+.dropdown-item{
+    color:#4d4d4d;
 }
 .dropdown-toggle::after{
     display: none;
@@ -72,23 +80,22 @@ header h2{
 /* 主体container部分 */
 /* 全国和重点区域aod图，表格 */
 .AODMaps{
-    margin-left:4rem;
+    margin-top: 2rem;
 }
 
 #aodTable{
-    margin-top:1rem;
     text-align: center;
+   
     
 }
 #aodTable table{ 
     border:1px #ccc solid;
-    border-collapse:separate;       
-    -moz-border-radius:10px;  
-    -webkit-border-radius:10px;  
+    border-collapse:separate; 
     border-radius:10px;
     font-size:0.8rem;
     color:#4d4d4d;
-    
+    box-shadow: 0.7rem 0px 1.2rem -0.4rem #201f1f,
+    0px 0.7rem 1.2rem -0.4rem #201f1f;    
 }
 
 .thead-first{
@@ -111,15 +118,20 @@ header h2{
     background-color: #bed1f2;
 }
 table thead tr:first-child th:first-child{
-    border-top-left-radius:10px;
-   
+    border-top-left-radius:10px;   
 }
 table thead tr:first-child th:last-child{
-    border-top-right-radius:10px;
-   
+    border-top-right-radius:10px;   
 }
-.AODMaps .col-5 img{
-    
+.AODMaps div img{
+    /*width:100%;*/
+    box-shadow: 0.7rem 0px 1.2rem -0.4rem #201f1f,
+    0px 0.7rem 1.2rem -0.4rem #201f1f;
+    border-radius: 10px;
+    padding:0.5rem 2rem 1rem 2rem;
+    display: block;
+    margin: 0 auto;
+
 }
 #jingjinjiMap{
 display: none;
@@ -129,6 +141,16 @@ display: none;
 }
 #zhusanjiaoMap{
     display:none;
+}
+.PM{
+    
+    
+}
+.PM a{
+    background-color: #ccc;
+    display: block;
+    height: 30rem;
+    width:100%;
 }
 /* 折线图、柱状图 */
 #polyLineForm{
@@ -167,3 +189,8 @@ display: none;
     width:500px;
     height:200px;
 } */
+/*页脚footer样式*/
+footer{
+    background-color: #3b7fb7;
+    height: 2.5rem;
+}
