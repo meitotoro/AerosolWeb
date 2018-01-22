@@ -46,7 +46,7 @@ $(function () {
                     for (var i = 0; i < sites.length; i++) {
                         var lon = Math.round(locate[i][0]).toString();
                         var lat = Math.round(locate[i][1]).toString();
-                        var locate_Html = "<td>" + lon + "°E," + lat + "°N</td>";
+                        var locate_Html = lon + "°E," + lat + "°N";
                         var index = i + 1;
                         var b = index % 2;
                         var html = "";
@@ -54,31 +54,35 @@ $(function () {
                         var backgroundColor="";
                         var percent=aod[i]/1.5;
                         if(percent<0.2){
-                            backgroundColor="rgba(51, 153, 255)";
+                            backgroundColor="#6600ff";
                         }
-                        else if(0.2<=percent<0.4){
-                            backgroundColor="rgba(0, 255, 255)";
-                        }else if(0.4<=percent<0.6){
-                            backgroundColor="rgba(200, 215, 168)";
+                        else if(percent>=0.2&&percent<0.4){
+                            backgroundColor="#33ccff";
+                        }else if(percent>=0.4&&percent<0.6){
+                            backgroundColor="#57f08a";
                         }
-                        else if(0.6<=percent<0.8){
-                            backgroundColor="rgba(230, 172, 56)";
+                        else if(percent>=0.6&&percent<0.8){
+                            backgroundColor="#f79628";
                         }else{
-                            backgroundColor="rgba(255, 0, 0)";
+                            backgroundColor="#f74a28";
                         }
+                        var linearColor="";
                         if (b == 0) {
                             //设置偶数行的背景色
-                            html = "<tr bgcolor='#bed1f2'><td>" + index + "</td><td>" + sites[i] + "</td>" + locate_Html + "<td style='background-size: "+percentage+"'>" + aod[i] + "</td></tr > ";
+                            html = "<tr bgcolor='#bed1f2'><td>" + index + "</td><td>" + sites[i] + "</td><td>" + locate_Html + "</td><td>" + aod[i] + "</td></tr>";
+                            linearColor="linear-gradient(to right,"+backgroundColor+" "+percentage+",#bed1f2 "+percentage+", #bed1f2 100%";
                         }
                         else if (b == 1) {
-                            html = "<tr><td>" + index + "</td><td>" + sites[i] + "</td>" + locate_Html +  "<td style='background-size: "+percentage+"'>"+ aod[i] + "</td></tr>";
+                            html = "<tr bgcolor='#f0f0f0'><td>" + index + "</td><td>" + sites[i] + "</td><td>" + locate_Html +  "</td><td>"+ aod[i] + "</td></tr>";
+                            linearColor="linear-gradient(to right,"+backgroundColor+" "+percentage+",#f0f0f0 "+percentage+",#f0f0f0 100%";
                         }
                         $("#aodTable table tbody").append(html);
+                        
+                        $("#aodTable table tbody tr:last-child td:last-child").css({"background-repeat":"no-repeat",
+                        "background":linearColor});
                     }
                     //设置表格的padding
-                    $("#aodTable table tbody tr td:last-child").css({ "padding": "5px 10px 5px 10px", "color": "#4d4d4d",
-                    "background-color": backgroundColor,
-                    "background-repeat": "no-repeat" });
+                    $("#aodTable table tbody tr td:last-child").css({ "padding": "5px 10px 5px 10px", "color": "#4d4d4d"});
                     $("#aodTable table tbody tr:last-child td:first-child").css({"border-bottom-left-radius":"10px"});
                     $("#aodTable table tbody tr:last-child td:last-child").css({"border-bottom-right-radius":"10px"});
 

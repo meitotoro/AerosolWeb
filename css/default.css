@@ -111,17 +111,21 @@ header h2{
     padding:5px 10px 5px 10px;
 }
 .table .thead-first th{
+
     background-color:#3b7fb7;
     border:0px;
 }
 .table .thead-second th{
-    background-color: #bed1f2;
+     background-color: #bed1f2;
 }
 table thead tr:first-child th:first-child{
     border-top-left-radius:10px;   
 }
 table thead tr:first-child th:last-child{
     border-top-right-radius:10px;   
+}
+.AODMaps{
+    background-color: #ccc;
 }
 .AODMaps div img{
     /*width:100%;*/
@@ -131,6 +135,7 @@ table thead tr:first-child th:last-child{
     padding:0.5rem 2rem 1rem 2rem;
     display: block;
     margin: 0 auto;
+    background-color:white;
 
 }
 #jingjinjiMap{
@@ -142,21 +147,12 @@ display: none;
 #zhusanjiaoMap{
     display:none;
 }
-.PM{
-    
-    
-}
-.PM a{
-    background-color: #ccc;
-    display: block;
-    height: 30rem;
-    width:100%;
-}
+
 /* 折线图、柱状图 */
 #polyLineForm{
     padding:0 0 0 4rem;
     display: none;
-}
+}#cccccc
 #polyLineForm form .row{
     margin-left:0;
     margin-bottom: 0.5rem;
