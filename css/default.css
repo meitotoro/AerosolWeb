@@ -82,9 +82,12 @@ header h2{
 .AODMaps{
     margin-top: 2rem;
 }
-
+#tableAndMap{
+    background-color: white;
+}
 #aodTable{
     text-align: center;
+    padding:0 0 0 30px;
    
     
 }
@@ -139,13 +142,10 @@ table thead tr:first-child th:last-child{
 
 }
 #jingjinjiMap{
-display: none;
 }
 #changsanjiaoMap{
-    display: none;
 }
 #zhusanjiaoMap{
-    display:none;
 }
 
 /* 折线图、柱状图 */

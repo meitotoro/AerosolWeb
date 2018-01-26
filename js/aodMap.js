@@ -1,16 +1,49 @@
 $(function () {
     var year_list = $("#years-dropdown a");
     var month_list = $("#months-dropdown a");
-    var input_month = $("input-month").val();
+    var input_month = $("#input-month").val();      
     var wait = $(".wait");
     wait.hide();
     month_list.click(function () {
-        var input_month = $("#input-month").val();
         if (input_month != "请选择月份") {
+            var input_satellite=$("#chooseSate").val();
+            var path_map="";
+            switch(input_satellite)
+            {
+                case "MODIS":
+                    path_map=path_MODISmap;
+                    break;
+                case "AVHRR":
+                    path_map=path_VIIRSmap;
+                    break;
+                case "FY3-A":
+                    path_map=path_FYAmap;
+                    break;
+                case "FY3-B":
+                    path_map=path_FYBmap;
+                    break;
+            }
             var input_year = $("#input-year").val();
             var year = parseInt(input_year.substring(0, 4));
             var input_month = $(this).text();
             var month = parseInt(input_month.slice(0, -1));
+            var input_area=$("#input-area").val();
+            var area="";
+            switch(input_area)
+            {
+                case "全国":
+                    area="china";
+                    break;
+                case "京津冀":
+                    area="jingjinji";
+                    break;
+                case "珠三角":
+                    area="zhusanjiao";
+                    break;
+                case "长三角":
+                    area="changsanjiao"; 
+                    break;
+            }
             if (typeof (year) == "number") {
                 function reqListener() {
                     wait.hide();
@@ -25,16 +58,23 @@ $(function () {
                         return;
                     }
                     var filename = data.filename;
-                    var china_img_html = '<img id="imgAOD" src="' + path_map + "/" + filename[0] + '" alt="aod_image">';
-                    var jingjinji_img_html = '<img id="jingjinjiAOD" src="' + path_map + "/" + filename[1] + '" alt="aod_image">';
-                    var changsanjiao_img_html = '<img id="changsanjiaoAOD" src="' + path_map + "/" + filename[2] + '" alt="aod_image">';
-                    var zhusanjiao_img_html = '<img id="zhusanjiaoAOD" src="' + path_map + "/" + filename[3] + '" alt="aod_image">';
+                    var img_html = '<img id="'+area+'AOD" src="' + path_map + "/" + filename + '" alt="aod_image">';
                     //画图
                     $(".AODMaps div img").remove();
-                    $("#chinaMaps").append(china_img_html);
-                    $("#jingjinjiMap").append(jingjinji_img_html);
-                    $("#changsanjiaoMap").append(changsanjiao_img_html);
-                    $("#zhusanjiaoMap").append(zhusanjiao_img_html);
+                    switch (input_area){
+                        case "全国":
+                        $("#chinaMaps").append(img_html);
+                        break;
+                        case "京津冀":
+                        $("#jingjinjiMap").append(img_html);
+                        break;
+                        case "珠三角":
+                        $("#zhusanjiaoMap").append(img_html);
+                        break;
+                        case "长三角":
+                        $("#changsanjiaoMap").append(img_html);
+                        break;
+                    } 
                     $(".AODMaps div img").show();
                     //填充表格
 
@@ -44,8 +84,8 @@ $(function () {
                     }
                     $("#aodTable table tbody").html("");
                     for (var i = 0; i < sites.length; i++) {
-                        var lon = Math.round(locate[i][0]).toString();
-                        var lat = Math.round(locate[i][1]).toString();
+                        var lon = locate[i][0].toFixed(1).toString();
+                        var lat = locate[i][1].toFixed(1).toString();
                         var locate_Html = lon + "°E," + lat + "°N";
                         var index = i + 1;
                         var b = index % 2;
@@ -90,7 +130,7 @@ $(function () {
 
                 var oReq = new XMLHttpRequest();
                 oReq.addEventListener("load", reqListener);
-                var url = path_map + "?year=" + year + "&month=" + month;
+                var url = path_map + "?year=" + year + "&month=" + month+"&area="+area;
                 oReq.open("GET", url);
                 oReq.send();
                 wait.show();

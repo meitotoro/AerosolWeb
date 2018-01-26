@@ -9,7 +9,7 @@ $(function(){
     });
     $(".area .dropdown-menu a").click(function(){
         var value=$(this).text();
-        $("#chooseArea").val(value);
+        $("#input-area").val(value);
 
     });
     $(".statis .dropdown-menu a").click(function(){

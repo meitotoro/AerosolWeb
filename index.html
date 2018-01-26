@@ -70,7 +70,10 @@
             }
         ];
         var path = "http://192.168.1.137:9000/aod";
-        var path_map = "http://192.168.1.137:9000/map";
+        var path_MODISmap = "http://192.168.1.137:9000/MODISmap";
+        var path_VIIRSmap = "http://192.168.1.137:9000/VIIRSmap";
+        var path_FYAmap = "http://192.168.1.137:9000/FYAmap";
+        var path_FYBmap = "http://192.168.1.137:9000/FYBmap";     
 
     </script>
 
@@ -99,7 +102,7 @@
                     </div>
                 </div>
                 <div class="input-group area">
-                    <input type="text" id="chooseArea" class="form-control" aria-label="Text input with dropdown button" value="选择区域">
+                    <input type="text" id="input-area" class="form-control" aria-label="Text input with dropdown button" value="选择区域">
                     <div class="input-group-btn">
                         <button type="button" class="btn btn-light btn-sm dropdown-toggle" data-toggle="dropdown">
                             <span class="fa fa-caret-down"></span>
@@ -210,50 +213,54 @@
     <!-- <div class="container"> -->
     <div class="AODMaps container-fluid">
         <div class="row">
-            <div id="aodTable" class="col-3">
-                <table class="table table-hover" cellspacing="0">
-                    <thead>
-                        <tr class="thead-first">
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        <tr class="thead-second">
-                            <th>#</th>
-                            <th>监测点</th>
-                            <th>位置</th>
-                            <th>光学厚度</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+            <div id="tableAndMap" class="col-9">
+                <div class="row">
+                <div id="aodTable" class="col-4">
+                    <table class="table table-hover" cellspacing="0">
+                        <thead>
+                            <tr class="thead-first">
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            <tr class="thead-second">
+                                <th>#</th>
+                                <th>监测点</th>
+                                <th>位置</th>
+                                <th>光学厚度</th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="maps col-8">
+                    <div class="wait">
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                    </div>
+                    <div id="chinaMaps">
+                        
+                    </div>
+                    <div id="jingjinjiMap">
+                        
+                    </div>
+                    <div id="changsanjiaoMap">
+                        
+                    </div>
+                    <div id="zhusanjiaoMap">
+                        
+                    </div>
+                </div>
             </div>
-            <div class="maps col-6">
-                <div class="wait">
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                </div>
-                <div id="chinaMaps">
-                    <img id="imgAOD" src="imgs/2001.png" alt="气溶胶光学厚度图">
-                </div>
-                <div id="jingjinjiMap">
-                    <img id="jingjinjiAOD" src="imgs/2001.png" alt="气溶胶光学厚度图">
-                </div>
-                <div id="changsanjiaoMap">
-                    <img id="changsanjiaoAOD" src="imgs/2001.png" alt="气溶胶光学厚度图">
-                </div>
-                <div id="zhusanjiaoMap">
-                    <img id="zhusanjiaoAOD" src="imgs/2001.png" alt="气溶胶光学厚度图">
-                </div>
             </div>
             <div class="PM col-3">
-                
+
             </div>
         </div>
 
