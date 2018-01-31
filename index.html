@@ -4,24 +4,27 @@
 <head>
     <meta charset="utf-8" content="width=device-width,initial-scale=1,shrink-to-fit=no" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    <!-- <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script> -->
     <!-- Latest compiled and minified CSS -->
+    <!-- <link href="css/bootstrap.min.css" rel="stylesheet" media="screen"> -->
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
-        crossorigin="anonymous">
+         crossorigin="anonymous">
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+    <!-- <script type="text/javascript" src="js/jquery-1.8.3.min.js" charset="UTF-8"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
         crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
-        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
     <!-- 引入fontawesome -->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+   <!--  --> <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <!-- 画柱状图 -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+   <!--  --> <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
     <!-- 画折线图 -->
     <script type="text/javascript" src="js/flotr2.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
     <!-- 自定义的各种样式,css文件 -->
     <link rel="stylesheet" href="css/default.css">
     <link rel="stylesheet" href="css/wait.css">
@@ -34,48 +37,7 @@
     <script type="text/javascript" src="js/aodMap.js"></script>
 
 
-    <script type="text/javascript">
-        /* var siteAODs = receiveSiteAOD();
-        var yearAODs = receiveYearAOD(); */
-        var sites = [
-            {
-                name: "北京",
-                lon: 116.381,
-                lat: 39.977
-            },
-            {
-                name: "台湾",
-                lon: 120.217,
-                lat: 23.000
-            },
-            {
-                name: "香港",
-                lon: 114.180,
-                lat: 22.303
-            },
-            {
-                name: "兰州",
-                lon: 104.137,
-                lat: 35.946
-            },
-            {
-                name: "太湖",
-                lon: 120.215,
-                lat: 31.421
-            },
-            {
-                name: "香河",
-                lon: 116.962,
-                lat: 39.754
-            }
-        ];
-        var path = "http://192.168.1.137:9000/aod";
-        var path_MODISmap = "http://192.168.1.137:9000/MODISmap";
-        var path_VIIRSmap = "http://192.168.1.137:9000/VIIRSmap";
-        var path_FYAmap = "http://192.168.1.137:9000/FYAmap";
-        var path_FYBmap = "http://192.168.1.137:9000/FYBmap";     
-
-    </script>
+    
 
     <title>气溶胶光学厚度展示分析平台</title>
     <!-- 参考中国空气质量在线监测分析平台https://www.aqistudy.cn/ -->
@@ -134,6 +96,8 @@
                     </div>
                 </div>
                 <div id="input-date">
+
+
                     <div class="input-group year">
                         <input type="text" id="input-year" class="form-control" aria-label="Text input with dropdown button" value="选择年份">
                         <div class="input-group-btn">
@@ -215,55 +179,70 @@
         <div class="row">
             <div id="tableAndMap" class="col-9">
                 <div class="row">
-                <div id="aodTable" class="col-4">
-                    <table class="table table-hover" cellspacing="0">
-                        <thead>
-                            <tr class="thead-first">
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                            <tr class="thead-second">
-                                <th>#</th>
-                                <th>监测点</th>
-                                <th>位置</th>
-                                <th>光学厚度</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                    <div id="aodTable" class="col-4">
+                        <table class="table table-hover" cellspacing="0">
+                            <thead>
+                                <tr class="thead-first">
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                                <tr class="thead-second">
+                                    <th>#</th>
+                                    <th>监测点</th>
+                                    <th>位置</th>
+                                    <th>光学厚度</th>
+                                </tr>
+                            </thead>
+                            <tbody>
 
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="maps col-8">
+                        <div class="wait">
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                        </div>
+                        <div id="chinaMaps">
+
+                        </div>
+                        <div id="jingjinjiMap">
+
+                        </div>
+                        <div id="changsanjiaoMap">
+
+                        </div>
+                        <div id="zhusanjiaoMap">
+
+                        </div>
+                    </div>
                 </div>
-                <div class="maps col-8">
-                    <div class="wait">
-                        <div class="dot"></div>
-                        <div class="dot"></div>
-                        <div class="dot"></div>
-                        <div class="dot"></div>
-                        <div class="dot"></div>
-                    </div>
-                    <div id="chinaMaps">
-                        
-                    </div>
-                    <div id="jingjinjiMap">
-                        
-                    </div>
-                    <div id="changsanjiaoMap">
-                        
-                    </div>
-                    <div id="zhusanjiaoMap">
-                        
-                    </div>
-                </div>
-            </div>
             </div>
             <div class="PM col-3">
 
             </div>
         </div>
-
+        <div class="row">
+            <div class="form-group">
+                <label for="dtp_input2" class="col-md-8 control-label">Date Picking</label>
+                <div class="input-group date form_date col-md-5" data-date="" data-link-field="dtp_input2">
+                    <input class="form-control" size="16" type="text" value="" readonly>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </span>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+                <input type="hidden" id="dtp_input2" value="" />
+                <br/>
+            </div>
+        </div>
 
     </div>
     <div class="row">
@@ -346,5 +325,50 @@
 
 
 </body>
-
+<script type="text/javascript">
+    /* var siteAODs = receiveSiteAOD();
+    var yearAODs = receiveYearAOD(); */
+    var sites = [
+        {
+            name: "北京",
+            lon: 116.381,
+            lat: 39.977
+        },
+        {
+            name: "台湾",
+            lon: 120.217,
+            lat: 23.000
+        },
+        {
+            name: "香港",
+            lon: 114.180,
+            lat: 22.303
+        },
+        {
+            name: "兰州",
+            lon: 104.137,
+            lat: 35.946
+        },
+        {
+            name: "太湖",
+            lon: 120.215,
+            lat: 31.421
+        },
+        {
+            name: "香河",
+            lon: 116.962,
+            lat: 39.754
+        }
+    ];
+    var path = "http://192.168.1.137:9000/aod";
+    var path_map = "http://192.168.1.137:9000/map";
+    $('.form_date').datetimepicker({
+        language:  'zh-CN',
+        format: 'yyyy-mm',
+		startView: 3,
+        minView: 'year',
+        startDate: '1990--1',
+        endDate: '2011-12'
+    });
+</script>
 </html>

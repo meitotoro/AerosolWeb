@@ -6,42 +6,25 @@ $(function () {
     wait.hide();
     month_list.click(function () {
         if (input_month != "请选择月份") {
-            var input_satellite=$("#chooseSate").val();
-            var path_map="";
-            switch(input_satellite)
-            {
-                case "MODIS":
-                    path_map=path_MODISmap;
-                    break;
-                case "AVHRR":
-                    path_map=path_VIIRSmap;
-                    break;
-                case "FY3-A":
-                    path_map=path_FYAmap;
-                    break;
-                case "FY3-B":
-                    path_map=path_FYBmap;
-                    break;
-            }
+            var input_satellite=$("#chooseSate").val().toLowerCase();
             var input_year = $("#input-year").val();
             var year = parseInt(input_year.substring(0, 4));
             var input_month = $(this).text();
             var month = parseInt(input_month.slice(0, -1));
             var input_area=$("#input-area").val();
             var area="";
-            switch(input_area)
-            {
+            switch (input_area){
                 case "全国":
                     area="china";
                     break;
                 case "京津冀":
                     area="jingjinji";
                     break;
+                case "长三角":
+                    area="changsanjiao";
+                    break;
                 case "珠三角":
                     area="zhusanjiao";
-                    break;
-                case "长三角":
-                    area="changsanjiao"; 
                     break;
             }
             if (typeof (year) == "number") {
@@ -130,7 +113,7 @@ $(function () {
 
                 var oReq = new XMLHttpRequest();
                 oReq.addEventListener("load", reqListener);
-                var url = path_map + "?year=" + year + "&month=" + month+"&area="+area;
+                var url = path_map + "?year=" + year + "&month=" + month+"&area="+area+"&satellite="+input_satellite;
                 oReq.open("GET", url);
                 oReq.send();
                 wait.show();
