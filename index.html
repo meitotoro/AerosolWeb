@@ -98,8 +98,23 @@
                     </div>
                 </div>
                 <div id="input-date">
-
-
+                        <div class='input-group date year' id='datetimepicker1'>
+                                <input type='text' class="form-control" />
+                                
+                                <span class="input-group-addon">
+                                    <span class="fa fa-calendar"></span>
+                                </span>
+                            
+                            </div>
+                                <div class='input-group date month' id='datetimepicker2'>
+                                    <input type='text' class="form-control" />  
+                                                                     
+                                    <span class="input-group-addon">
+                                        <span class="fa fa-calendar"></span>
+                                    </span>
+                            
+                                </div>
+                        
                     <div class="input-group year">
                         <input type="text" id="input-year" class="form-control" aria-label="Text input with dropdown button" value="选择年份">
                         <div class="input-group-btn">
@@ -230,14 +245,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="form-group">
-                <div class='input-group date' id='datetimepicker5'>
-                    <input type='text' class="form-control" />
-                    <span class="input-group-addon">
-                        <span class="fa fa-calendar"></span>
-                    </span>
-                </div>
-            </div>
+            
         </div>
 
     </div>
@@ -358,7 +366,14 @@
     ];
     var path = "http://192.168.1.137:9000/aod";
     var path_map = "http://192.168.1.137:9000/map";
-    $('#datetimepicker5').datetimepicker({
+    $('#datetimepicker1').datetimepicker({
+        locale: 'zh-CN',
+        format: 'YYYY年',
+		viewMode: 'years',
+        minDate: '1990-1',
+        maxDate: '2011-12'
+    });
+    $('#datetimepicker2').datetimepicker({
         locale: 'zh-CN',
         format: 'YYYY年MMMM',
 		viewMode: 'months',

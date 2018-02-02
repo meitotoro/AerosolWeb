@@ -50,6 +50,16 @@ header h2{
     margin-right:2rem;
     
 }
+.input-group-addon{
+    background-color:white;
+    border:0rem;
+    border-radius: 0 0.8rem 0.8rem 0;
+}
+.input-group-addon:hover{
+    background-color:#e5e5e5;
+    transition: 200ms background-color;
+
+}
 .input-group input{
     border:0rem;
     color:#4d4d4d;
@@ -60,13 +70,16 @@ header h2{
 .dropdown-toggle::after{
     display: none;
 } 
-.input-group-btn{
+.input-group .input-group-btn{
     font-size: 1.5rem;
     line-height: 8px;
     margin: 0;
+    border-radius:0.8rem;
+    
 }
 .input-group-btn button{
-    border-radius:1rem;
+    border-radius:0.8rem;
+    background-color:white;
     padding-top:2px;
 }
 .input-group-btn button span {
