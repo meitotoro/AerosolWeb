@@ -15,7 +15,7 @@ $(function () {
     area.click(function(){
         dp.data("DateTimePicker").date(null);
     })
-    satellite.click(function () {
+    satellite.click(function (e) {          
         input_satellite = $("#chooseSate").val().toLowerCase();
         if (input_satellite == "选择卫星") {
             alert("请选择卫星");
@@ -25,19 +25,17 @@ $(function () {
             case "modis":
                 dp.data("DateTimePicker").minDate('2002-11');
                 dp.data("DateTimePicker").maxDate('2011-07');
-                dp.data("DateTimePicker").date(null);
                 break;
             case "avhrr":
                 dp.data("DateTimePicker").minDate('1990-01');
-                dp.data("DateTimePicker").maxDate('2010-12');
-                dp.data("DateTimePicker").date(null);
+                dp.data("DateTimePicker").maxDate('2010-12');              
                 break;
             case "fy3-a":
                 dp.data("DateTimePicker").minDate('2009-01');
                 dp.data("DateTimePicker").maxDate('2011-12');
-                dp.data("DateTimePicker").date(null);
                 break;
         }
+        dp.data("DateTimePicker").date(null);
     });
     statis.click(function () {
         var statis_val = $("#chooseStatis").val();
@@ -59,11 +57,12 @@ $(function () {
                 $(".season").show();
         }
         dp.on("dp.change", function (e) {
+            var date = new Date(e.date);
+            if(e.date==false)return;                   
             var input_area = $("#input-area").val();
             if (input_area == "选择区域") {
                 alert("请选择区域");
                 return;
-
             }
             var area = "";
             switch (input_area) {
@@ -80,7 +79,7 @@ $(function () {
                     area = "zhusanjiao";
                     break;
             }
-            var date = new Date(e.date);
+            
             var month = date.getMonth() + 1;
             var year = date.getFullYear();
             function reqListener() {
