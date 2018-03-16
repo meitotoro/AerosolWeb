@@ -25,14 +25,17 @@ $(function () {
             case "modis":
                 dp.data("DateTimePicker").minDate('2002-11');
                 dp.data("DateTimePicker").maxDate('2011-07');
+                event.preventDefault;
                 break;
             case "avhrr":
                 dp.data("DateTimePicker").minDate('1990-01');
-                dp.data("DateTimePicker").maxDate('2010-12');              
+                dp.data("DateTimePicker").maxDate('2010-12');
+                event.preventDefault;              
                 break;
             case "fy3-a":
                 dp.data("DateTimePicker").minDate('2009-01');
                 dp.data("DateTimePicker").maxDate('2011-12');
+                event.preventDefault;
                 break;
         }
         dp.data("DateTimePicker").date(null);
