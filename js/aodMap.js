@@ -12,31 +12,37 @@ $(function () {
     var satellite = $(".satellite .dropdown-menu a");
     var input_satellite;
     var area = $(".area .dropdown-menu a");
-    area.click(function(){
+
+    var setting_picker = false;
+
+    area.click(function () {
         dp.data("DateTimePicker").date(null);
-    })
+    });
 
     satellite.click(function (e) {
-        input_satellite = $("#chooseSate").val().toLowerCase();        
+        input_satellite = $("#chooseSate").val().toLowerCase();
         if (input_satellite == "选择卫星") {
             alert("请选择卫星");
             return;
         }
-        if(input_satellite=="modis"){
-            dp.data("DateTimePicker").minDate('2002-11');
-            dp.data("DateTimePicker").maxDate('2011-07');
 
-        }else if(input_satellite=="avhrr"){
-            
-            dp.data("DateTimePicker").minDate('1990-01');
-            dp.data("DateTimePicker").maxDate('2010-12');
-            e.preventDefault();
-            e.stopPropagation();
-            alert("jinlaile");           
-        }else if(input_satellite=="fy3-a"){
-            dp.data("DateTimePicker").minDate('2009-01');
-            dp.data("DateTimePicker").maxDate('2011-12');
+        // 根据卫星设置可选择日期范围
+        setting_picker = true;
+        if (input_satellite == "modis") {
+            dp.data("DateTimePicker").minDate(moment('2002-11', 'YYYY-MM'));
+            dp.data("DateTimePicker").maxDate(moment('2011-07', 'YYYY-MM'));
+
+        } else if (input_satellite == "avhrr") {
+            dp.data("DateTimePicker").minDate(moment('1990-01', 'YYYY-MM'));
+            dp.data("DateTimePicker").maxDate(moment('2010-12', 'YYYY-MM'));
+
+        } else if (input_satellite == "fy3-a") {
+            dp.data("DateTimePicker").minDate(moment('2009-01', 'YYYY-MM'));
+            dp.data("DateTimePicker").maxDate(moment('2011-12', 'YYYY-MM'));
         }
+        setting_picker = false;
+        // 设置日期范围结束
+
         dp.data("DateTimePicker").date(null);
     });
     statis.click(function () {
@@ -58,22 +64,22 @@ $(function () {
                 dp.hide();
                 $(".season").show();
         }
-        
-        
     });
     dp.on("dp.change", function (e) {
- /*        e.onchange = e._onchange;
-        e._onchange=null; */
+        // 设置日期范围触发的事件，忽略
+        if (setting_picker) return;
+
         var date = new Date(e.date);
-        if(e.date==false)return;                   
+        if (e.date == false) return;
         var input_area = $("#input-area").val();
         if (input_area == "选择区域") {
             return;
         }
         var statis_val = $("#chooseStatis").val();
-        if(statis_val=="选择统计方式"){
+        if (statis_val == "选择统计方式") {
             return;
         }
+
         var area = "";
         switch (input_area) {
             case "全国":
@@ -89,7 +95,7 @@ $(function () {
                 area = "zhusanjiao";
                 break;
         }
-        
+
         var month = date.getMonth() + 1;
         var year = date.getFullYear();
         function reqListener() {
@@ -185,8 +191,8 @@ $(function () {
         wait.show();
         $("#aodTable table tbody").html("");
         $(".AODMaps div img").hide();
-    
-        
+
+
     });
 
 })
