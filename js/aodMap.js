@@ -29,7 +29,7 @@ $(function () {
         // 根据卫星设置可选择日期范围
         setting_picker = true;
         if (input_satellite == "modis") {
-            dp.data("DateTimePicker").minDate(moment('2002-11', 'YYYY-MM'));
+            dp.data("DateTimePicker").minDate(moment('2002-11','YYYY-MM'));
             dp.data("DateTimePicker").maxDate(moment('2011-07', 'YYYY-MM'));
 
         } else if (input_satellite == "avhrr") {
@@ -75,11 +75,6 @@ $(function () {
         if (input_area == "选择区域") {
             return;
         }
-        var statis_val = $("#chooseStatis").val();
-        if (statis_val == "选择统计方式") {
-            return;
-        }
-
         var area = "";
         switch (input_area) {
             case "全国":
@@ -95,9 +90,20 @@ $(function () {
                 area = "zhusanjiao";
                 break;
         }
-
-        var month = date.getMonth() + 1;
-        var year = date.getFullYear();
+        var month;
+        var year;
+        var url;
+        var statis_val = $("#chooseStatis").val();
+        if (statis_val == "选择统计方式") {
+            return;
+        }else if(statis_val=="月平均"){
+            month = date.getMonth() + 1;
+            year = date.getFullYear();
+            url= path_map + "?year=" + year + "&month=" + month + "&area=" + area + "&satellite=" + input_satellite;
+        }else if(statis_val=="年平均"){
+            year=date.getFullYear();
+            url = path_map + "?year=" + year + "&area=" + area + "&satellite=" + input_satellite;
+        }
         function reqListener() {
             wait.hide();
             var data = this.responseText;
@@ -184,8 +190,7 @@ $(function () {
         }
 
         var oReq = new XMLHttpRequest();
-        oReq.addEventListener("load", reqListener);
-        var url = path_map + "?year=" + year + "&month=" + month + "&area=" + area + "&satellite=" + input_satellite;
+        oReq.addEventListener("load", reqListener);    
         oReq.open("GET", url);
         oReq.send();
         wait.show();
