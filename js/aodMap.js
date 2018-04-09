@@ -49,9 +49,9 @@ $(function () {
             dp.data("DateTimePicker").minDate(moment('1990-01', 'YYYY-MM'));
             dp.data("DateTimePicker").maxDate(moment('2010-12', 'YYYY-MM'));
 
-        } else if (input_satellite == "fy3-a") {
+        } else if (input_satellite == "fy") {
             dp.data("DateTimePicker").minDate(moment('2009-01', 'YYYY-MM'));
-            dp.data("DateTimePicker").maxDate(moment('2011-12', 'YYYY-MM'));
+            dp.data("DateTimePicker").maxDate(moment('2014-02', 'YYYY-MM'));
         }
         setting_picker = false;
         // 设置日期范围结束
